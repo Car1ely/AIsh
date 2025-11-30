@@ -1,4 +1,7 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const Team = () => {
+  const { t } = useLanguage()
   const teamMembers = [
     {
       name: 'Li Artur',
@@ -24,10 +27,10 @@ const Team = () => {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100">
+    <section id="team" className="py-20 bg-gradient-to-br from-primary-50 to-primary-100">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-          Наша команда
+          {t('team.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface Job {
   id: number
@@ -17,6 +18,7 @@ interface RecommendedCourse {
 }
 
 const Demo = () => {
+  const { t } = useLanguage()
   const [skills, setSkills] = useState('')
   const [jobs, setJobs] = useState<Job[]>([])
   const [recommendedCourses, setRecommendedCourses] = useState<RecommendedCourse[]>([])
@@ -174,22 +176,22 @@ const Demo = () => {
     <section id="demo" className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-4">
-          Демо: AI-матчинг вакансий
+          {t('demo.title')}
         </h2>
         <p className="text-center text-primary-100 mb-12 text-lg">
-          Введите ваши навыки через запятую, и AI покажет подходящие вакансии
+          {t('demo.subtitle')}
         </p>
 
         <div className="max-w-3xl mx-auto">
           {/* Форма ввода */}
           <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl mb-8">
             <label className="block text-lg font-semibold mb-3">
-              Ваши навыки:
+              {t('demo.skills.label')}
             </label>
             <textarea
               value={skills}
               onChange={(e) => setSkills(e.target.value)}
-              placeholder="Например: React, JavaScript, Excel, Communication, Photoshop..."
+              placeholder={t('demo.skills.placeholder')}
               className="w-full p-4 rounded-lg text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-primary-300 min-h-[120px]"
             />
             <button
@@ -197,7 +199,7 @@ const Demo = () => {
               disabled={isCalculating}
               className="mt-4 w-full bg-white text-primary-700 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isCalculating ? '🤖 AI анализирует...' : 'Рассчитать AI-совпадение'}
+              {isCalculating ? t('demo.calculating') : t('demo.button')}
             </button>
           </div>
 
@@ -205,7 +207,7 @@ const Demo = () => {
           {jobs.length > 0 && (
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-center">
-                Результаты AI-матчинга:
+                {t('demo.results.title')}
               </h3>
               
               {/* Вакансии */}
@@ -230,11 +232,11 @@ const Demo = () => {
                         }`}>
                           {job.matchPercentage}%
                         </div>
-                        <div className="text-sm text-primary-200">совпадение</div>
+                        <div className="text-sm text-primary-200">{t('demo.match')}</div>
                       </div>
                     </div>
                     <div className="mt-4">
-                      <p className="text-sm text-primary-200 mb-2">Требуемые навыки:</p>
+                      <p className="text-sm text-primary-200 mb-2">{t('demo.required')}</p>
                       <div className="flex flex-wrap gap-2">
                         {job.requiredSkills.map((skill, idx) => (
                           <span
@@ -254,7 +256,7 @@ const Demo = () => {
               {recommendedCourses.length > 0 && (
                 <div className="bg-white/10 backdrop-blur-lg p-6 rounded-xl mt-8">
                   <h3 className="text-2xl font-bold mb-4">
-                    🎓 Рекомендуемые курсы для улучшения совпадения:
+                    {t('demo.courses.title')}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {recommendedCourses.map((course, idx) => (

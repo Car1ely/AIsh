@@ -1,4 +1,7 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const WhyUs = () => {
+  const { t } = useLanguage()
   const reasons = [
     {
       title: 'Опыт команды',
@@ -26,7 +29,7 @@ const WhyUs = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-          Почему AIsh?
+          {t('whyus.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {reasons.map((reason, index) => (

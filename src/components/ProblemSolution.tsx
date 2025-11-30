@@ -1,4 +1,7 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const ProblemSolution = () => {
+  const { t } = useLanguage()
   const problems = [
     {
       title: 'Теневой рынок труда',
@@ -46,16 +49,14 @@ const ProblemSolution = () => {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section id="problem" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <h2 className="text-4xl font-bold mb-4 text-gray-900">
-            Почему AIsh важен?
+            {t('problem.title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            В Узбекистане остро стоит проблема трудоустройства молодежи. Только 1.6% безработных обращаются в центры занятости, 
-            а большинство ищут работу через неофициальные каналы. AIsh решает эту проблему, создавая прозрачный и эффективный 
-            рынок труда с использованием искусственного интеллекта.
+            {t('problem.subtitle')}
           </p>
         </div>
 
@@ -63,7 +64,7 @@ const ProblemSolution = () => {
           {/* Problems */}
           <div>
             <h2 className="text-4xl font-bold mb-8 text-red-600">
-              Проблемы рынка труда
+              {t('problem.problems.title')}
             </h2>
             <div className="space-y-4">
               {problems.map((problem, index) => (
@@ -84,7 +85,7 @@ const ProblemSolution = () => {
           {/* Solutions */}
           <div>
             <h2 className="text-4xl font-bold mb-8 text-primary-600">
-              Решения AIsh
+              {t('problem.solutions.title')}
             </h2>
             <div className="space-y-6">
               {solutions.map((solution, index) => (

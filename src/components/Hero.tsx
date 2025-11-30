@@ -1,33 +1,40 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const Hero = () => {
+  const { t } = useLanguage()
+  
   const scrollToDemo = () => {
-    const demoSection = document.getElementById('demo')
-    demoSection?.scrollIntoView({ behavior: 'smooth' })
+    const element = document.getElementById('demo')
+    if (element) {
+      const headerOffset = 80
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 text-white">
-      <div className="absolute inset-0 bg-black opacity-20"></div>
-      <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-fade-in drop-shadow-2xl">
-          AIsh
+    <section id="hero" className="relative pt-24 pb-16 flex items-center justify-center bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+      <div className="container mx-auto px-4 text-center">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+          {t('hero.title')}
         </h1>
-        <p className="text-xl md:text-3xl mb-8 text-primary-100 max-w-3xl mx-auto">
-          AI-платформа для поиска работы и роста навыков в Узбекистане
+        <p className="text-xl md:text-2xl mb-6 text-gray-800 max-w-3xl mx-auto font-semibold">
+          {t('hero.subtitle')}
         </p>
-        <p className="text-lg md:text-xl mb-12 text-primary-200 max-w-2xl mx-auto">
-          Интеллектуальная карьерная платформа с AI-матчингом вакансий, курсами обучения и персональной карьерной навигацией
+        <p className="text-lg mb-8 text-gray-600 max-w-2xl mx-auto">
+          {t('hero.description')}
         </p>
         <button
           onClick={scrollToDemo}
-          className="bg-white text-primary-700 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-xl"
+          className="bg-gradient-to-r from-primary-600 to-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-primary-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
         >
-          Посмотреть демо
+          {t('hero.button')}
         </button>
-      </div>
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
       </div>
     </section>
   )

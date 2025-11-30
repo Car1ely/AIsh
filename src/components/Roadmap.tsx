@@ -1,33 +1,49 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const Roadmap = () => {
+  const { t } = useLanguage()
   const stages = [
     {
-      stage: 'Идея',
-      description: 'Анализ рынка и формирование концепции платформы',
+      stage: 'Создание Прототипа/MVP',
+      description: 'Разработка минимально жизнеспособного продукта с базовым функционалом AI-матчинга, системой курсов и пользовательскими профилями',
       status: 'completed',
     },
     {
-      stage: 'Прототип',
-      description: 'Разработка MVP с базовым функционалом AI-матчинга',
-      status: 'completed',
-    },
-    {
-      stage: 'MVP',
-      description: 'Запуск демо-версии с основными функциями',
+      stage: 'Поиск финансирования',
+      description: 'Привлечение инвестиций для развития проекта. Поиск партнеров и инвесторов, заинтересованных в развитии рынка труда Узбекистана',
       status: 'in-progress',
     },
     {
-      stage: 'Запуск',
-      description: 'Полноценный запуск платформы для пользователей',
+      stage: 'Сбор команды',
+      description: 'Расширение команды для создания и поддержки проекта. Привлечение специалистов по разработке, маркетингу, поддержке пользователей',
+      status: 'in-progress',
+    },
+    {
+      stage: 'Маркетинг проекта',
+      description: 'Продвижение платформы среди целевой аудитории. Реклама в социальных сетях, партнерства с образовательными учреждениями, участие в мероприятиях',
+      status: 'pending',
+    },
+    {
+      stage: 'Запуск и развитие',
+      description: 'Полноценный запуск платформы для пользователей. Сбор обратной связи, улучшение функционала, масштабирование',
+      status: 'pending',
+    },
+    {
+      stage: 'Расширение на мобильное приложение',
+      description: 'Разработка мобильных приложений для iOS и Android. Расширение функционала и улучшение пользовательского опыта',
       status: 'pending',
     },
   ]
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="implementation" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
-          Дорожная карта
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
+          {t('implementation.title')}
         </h2>
+        <p className="text-center text-gray-600 mb-12 text-lg max-w-3xl mx-auto">
+          {t('implementation.subtitle')}
+        </p>
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline line */}

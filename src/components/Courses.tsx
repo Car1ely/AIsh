@@ -1,4 +1,7 @@
+import { useLanguage } from '../contexts/LanguageContext'
+
 const Courses = () => {
+  const { t } = useLanguage()
   const courses = [
     {
       id: 1,
@@ -69,14 +72,13 @@ const Courses = () => {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
+    <section id="courses" className="py-20 bg-gradient-to-br from-primary-50 to-white">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-          Курсы и обучение
+          {t('courses.title')}
         </h2>
         <p className="text-center text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
-          Развивайте навыки с помощью курсов от работодателей и экспертов. 
-          После прохождения получайте бейджи, XP и сертификаты для вашего профиля.
+          {t('courses.subtitle')}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -139,16 +141,21 @@ const Courses = () => {
 
         <div className="mt-12 text-center">
           <p className="text-gray-600 mb-4">
-            AI рекомендует курсы на основе ваших навыков и целей карьеры
+            {t('courses.recommend')}
           </p>
           <button
             onClick={() => {
-              const demoSection = document.getElementById('demo')
-              demoSection?.scrollIntoView({ behavior: 'smooth' })
+              const element = document.getElementById('demo')
+              if (element) {
+                const headerOffset = 80
+                const elementPosition = element.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+              }
             }}
             className="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-300"
           >
-            Попробовать AI-рекомендации
+            {t('courses.button')}
           </button>
         </div>
       </div>
